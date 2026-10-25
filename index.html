@@ -35,7 +35,6 @@ ul{list-style:none}
 .container{width:min(1200px,92%);margin-inline:auto}
 section{padding:96px 0}
 
-/* ---------- Typography helpers ---------- */
 .eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px}
 .eyebrow::before{content:"";display:inline-block;width:34px;height:2px;background:var(--gold);vertical-align:middle;margin-right:12px}
 h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(2rem,4vw,3.1rem);line-height:1.15;margin-bottom:18px}
@@ -50,7 +49,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .btn-line{border-color:rgba(255,255,255,.75);color:#fff}
 .btn-line:hover{background:#fff;color:var(--navy)}
 
-/* ---------- Reveal on scroll ---------- */
 .reveal{animation:rise .9s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
@@ -68,7 +66,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .menu .cta::after{display:none}
 .burger{display:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
 
-/* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;padding:140px 0 120px;
   background:linear-gradient(105deg,rgba(12,30,54,.92) 0%,rgba(12,30,54,.72) 48%,rgba(12,30,54,.25) 100%),url("images/hero-livingroom.jpg") center/cover no-repeat}
 .hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6.2vw,5.2rem);line-height:1.08;max-width:15ch;margin-bottom:22px}
@@ -83,7 +80,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .quick strong{display:block;font-family:var(--serif);font-size:2rem;color:var(--navy);line-height:1.1}
 .quick span{font-size:.82rem;color:var(--muted);letter-spacing:.04em}
 
-/* ---------- ABOUT ---------- */
 .about{padding-top:170px;background:var(--white)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
 .photo-stack{position:relative}
@@ -96,7 +92,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .tick li{position:relative;padding-left:30px;font-weight:500;font-size:.95rem}
 .tick li::before{content:"✓";position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:.72rem;display:grid;place-items:center;font-weight:700;margin-top:3px}
 
-/* ---------- SERVICES ---------- */
 .services{background:var(--ivory)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
 .card{background:#fff;border-radius:var(--radius);padding:34px 30px;box-shadow:0 8px 24px rgba(12,30,54,.07);border-bottom:4px solid transparent;transition:.3s}
@@ -105,8 +100,7 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .card h3{font-family:var(--serif);font-size:1.3rem;color:var(--navy);margin-bottom:8px}
 .card p{font-size:.95rem;color:var(--muted)}
 
-/* ---------- VISION / SPIRIT ---------- */
-.vision{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+ision{background:var(--navy);color:#fff;position:relative;overflow:hidden}
 .vision::before{content:"";position:absolute;inset:0;background:url("images/crane-bg.jpg") center/cover;opacity:.22}
 .vision .container{position:relative}
 .vision h2.title{color:#fff}
@@ -117,7 +111,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .vs h3{font-family:var(--serif);font-size:2rem;color:var(--gold);margin-bottom:12px}
 .vs p{color:#d6dde9}
 
-/* ---------- PERSONNEL / TEAM ---------- */
 .personnel{background:#fff}
 .split.rev{grid-template-columns:1.1fr .9fr}
 .personnel p{color:#46505f;margin-bottom:16px}
@@ -134,7 +127,6 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .team-pics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
 .team-pics img{width:100%;height:200px;object-fit:cover;border-radius:12px}
 
-/* ---------- ORGANISATION STRUCTURE ---------- */
 .org{background:#fff}
 .chart{margin-top:52px;display:flex;flex-direction:column;align-items:center}
 .n{background:var(--navy);color:#fff;padding:13px 24px;border-radius:10px;font-weight:600;font-size:.92rem;text-align:center;min-width:170px;box-shadow:0 6px 16px rgba(12,30,54,.18)}
@@ -146,7 +138,7 @@ h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:cl
 .two{display:flex;gap:70px;align-items:flex-start;justify-content:center;flex-wrap:wrap;margin-top:0}
 .branch{display:flex;flex-direction:column;align-items:center}
 
-/* ---------- EXPERIENCE ---------- */
+
 .experience{background:var(--stone)}
 .exp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
 .exp-grid p{color:#46505f;margin-bottom:16px}
@@ -330,7 +322,6 @@ footer strong{color:var(--gold)}
   </div>
 </section>
 
-<!-- ===================== VISION & SPIRIT ===================== -->
 <section class="vision" id="vision">
   <div class="container">
     <div class="center" style="margin-bottom:48px">
@@ -356,7 +347,6 @@ footer strong{color:var(--gold)}
   </div>
 </section>
 
-<!-- ===================== PERSONNEL ===================== -->
 <section class="personnel" id="personnel">
   <div class="container split rev">
     <div class="reveal">
@@ -369,8 +359,6 @@ footer strong{color:var(--gold)}
     <img class="pic reveal" src="images/personnel.jpg" alt="Modern meeting area" />
   </div>
 </section>
-
-<!-- ===================== OUR TEAM ===================== -->
 <section class="team" id="team">
   <div class="container center">
     <span class="eyebrow">Our Team</span>
@@ -393,8 +381,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== ORGANISATION STRUCTURE ===================== -->
 <section class="org" id="structure">
   <div class="container center">
     <span class="eyebrow">Organisation Structure</span>
@@ -439,8 +425,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== COMPANY EXPERIENCE ===================== -->
 <section class="experience" id="experience">
   <div class="container exp-grid">
     <div class="reveal">
@@ -457,8 +441,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== PROJECTS ===================== -->
 <section class="projects" id="projects">
   <div class="container center">
     <span class="eyebrow">Our Projects</span>
@@ -492,8 +474,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== COMPLIANCE ===================== -->
 <section class="compliance" id="compliance">
   <div class="container center">
     <span class="eyebrow">Compliance</span>
@@ -506,8 +486,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== CLIENTS ===================== -->
 <section class="clients" id="clients">
   <div class="container">
     <div class="center">
@@ -545,8 +523,6 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </section>
-
-<!-- ===================== CONTACT ===================== -->
 <section class="contact" id="contact">
   <div class="container contact-grid">
     <div>
