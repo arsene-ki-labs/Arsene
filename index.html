@@ -9,243 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-<style>
-:root{
-  --navy:#0c1e36;
-  --navy-2:#13294a;
-  --gold:#c6a15b;
-  --gold-dark:#a9843c;
-  --ivory:#f8f5ef;
-  --stone:#ece6da;
-  --ink:#1c2430;
-  --muted:#667085;
-  --white:#fff;
-  --radius:14px;
-  --shadow:0 18px 40px rgba(12,30,54,.14);
-  --serif:"Playfair Display",Georgia,serif;
-  --sans:"Inter",Arial,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.65;overflow-x:hidden}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-ul{list-style:none}
-.container{width:min(1200px,92%);margin-inline:auto}
-section{padding:96px 0}
-
-/* ---------- Typography helpers ---------- */
-.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px}
-.eyebrow::before{content:"";display:inline-block;width:34px;height:2px;background:var(--gold);vertical-align:middle;margin-right:12px}
-h2.title{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(2rem,4vw,3.1rem);line-height:1.15;margin-bottom:18px}
-.lead{color:var(--muted);font-size:1.06rem;max-width:62ch}
-.center{text-align:center}
-.center .lead{margin-inline:auto}
-.center .eyebrow::before{display:none}
-
-.btn{display:inline-block;padding:15px 32px;border-radius:50px;font-weight:600;font-size:.92rem;letter-spacing:.04em;transition:.25s;cursor:pointer;border:2px solid transparent}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.btn-gold:hover{background:var(--gold-dark);color:#fff;transform:translateY(-2px)}
-.btn-line{border-color:rgba(255,255,255,.75);color:#fff}
-.btn-line:hover{background:#fff;color:var(--navy)}
-
-/* ---------- Reveal on scroll ---------- */
-.reveal{animation:rise .9s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-
-/* ---------- NAVBAR ---------- */
-.nav{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(12,30,54,.97);box-shadow:0 6px 24px rgba(0,0,0,.25);padding:8px 0}
-.nav .container{display:flex;align-items:center;justify-content:space-between}
-.navtoggle{display:none}
-.brand{background:#fff;border-radius:10px;padding:6px 12px;display:flex;align-items:center}
-.brand img{height:38px;width:auto}
-.menu{display:flex;gap:26px;align-items:center}
-.menu a{color:#fff;font-size:.86rem;font-weight:500;letter-spacing:.04em;position:relative;padding:6px 0}
-.menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gold);transition:.25s}
-.menu a:hover::after{width:100%}
-.menu .cta{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:50px;font-weight:600}
-.menu .cta::after{display:none}
-.burger{display:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
-
-/* ---------- HERO ---------- */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;padding:140px 0 120px;
-  background:linear-gradient(105deg,rgba(12,30,54,.92) 0%,rgba(12,30,54,.72) 48%,rgba(12,30,54,.25) 100%),url("images/hero-livingroom.jpg") center/cover no-repeat}
-.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6.2vw,5.2rem);line-height:1.08;max-width:15ch;margin-bottom:22px}
-.hero h1 em{color:var(--gold);font-style:normal}
-.hero p{max-width:56ch;font-size:1.12rem;color:#e4e9f1;margin-bottom:34px}
-.hero .btns{display:flex;flex-wrap:wrap;gap:14px}
-.hero .tagline{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
-
-.quick{position:absolute;left:50%;bottom:-62px;transform:translateX(-50%);width:min(1100px,92%);background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr);z-index:5}
-.quick div{padding:26px 28px;border-right:1px solid #eee;text-align:center}
-.quick div:last-child{border:0}
-.quick strong{display:block;font-family:var(--serif);font-size:2rem;color:var(--navy);line-height:1.1}
-.quick span{font-size:.82rem;color:var(--muted);letter-spacing:.04em}
-
-/* ---------- ABOUT ---------- */
-.about{padding-top:170px;background:var(--white)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.photo-stack{position:relative}
-.photo-stack .main{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;height:520px;object-fit:cover}
-.photo-stack .badge{position:absolute;right:-24px;bottom:-28px;background:var(--navy);color:#fff;padding:26px 30px;border-radius:var(--radius);border-left:5px solid var(--gold);max-width:230px}
-.badge strong{display:block;font-family:var(--serif);font-size:2.4rem;color:var(--gold);line-height:1}
-.badge span{font-size:.86rem;color:#d6dde9}
-.about p{margin-bottom:18px;color:#46505f}
-.tick{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
-.tick li{position:relative;padding-left:30px;font-weight:500;font-size:.95rem}
-.tick li::before{content:"✓";position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:.72rem;display:grid;place-items:center;font-weight:700;margin-top:3px}
-
-/* ---------- SERVICES ---------- */
-.services{background:var(--ivory)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
-.card{background:#fff;border-radius:var(--radius);padding:34px 30px;box-shadow:0 8px 24px rgba(12,30,54,.07);border-bottom:4px solid transparent;transition:.3s}
-.card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:var(--shadow)}
-.card .ico{width:56px;height:56px;border-radius:14px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:1.5rem;margin-bottom:20px}
-.card h3{font-family:var(--serif);font-size:1.3rem;color:var(--navy);margin-bottom:8px}
-.card p{font-size:.95rem;color:var(--muted)}
-
-/* ---------- VISION / SPIRIT ---------- */
-.vision{background:var(--navy);color:#fff;position:relative;overflow:hidden}
-.vision::before{content:"";position:absolute;inset:0;background:url("images/crane-bg.jpg") center/cover;opacity:.22}
-.vision .container{position:relative}
-.vision h2.title{color:#fff}
-.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:10px}
-.vs{border-radius:var(--radius);overflow:hidden;background:var(--navy-2);box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.vs img{width:100%;height:270px;object-fit:cover}
-.vs div{padding:34px}
-.vs h3{font-family:var(--serif);font-size:2rem;color:var(--gold);margin-bottom:12px}
-.vs p{color:#d6dde9}
-
-/* ---------- PERSONNEL / TEAM ---------- */
-.personnel{background:#fff}
-.split.rev{grid-template-columns:1.1fr .9fr}
-.personnel p{color:#46505f;margin-bottom:16px}
-.personnel .pic{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;height:560px;object-fit:cover}
-.team{background:var(--ivory)}
-.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
-.role{background:#fff;padding:30px;border-radius:var(--radius);text-align:center;box-shadow:0 8px 22px rgba(12,30,54,.07);transition:.3s}
-.role:hover{background:var(--navy);color:#fff;transform:translateY(-6px)}
-.role:hover h4{color:var(--gold)}
-.role .ico{font-size:2rem;margin-bottom:10px}
-.role h4{font-family:var(--serif);font-size:1.2rem;color:var(--navy);transition:.3s}
-.role p{font-size:.88rem;opacity:.8;margin-top:4px}
-.team-banner{width:100%;height:380px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow);margin-top:46px}
-.team-pics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
-.team-pics img{width:100%;height:200px;object-fit:cover;border-radius:12px}
-
-/* ---------- ORGANISATION STRUCTURE ---------- */
-.org{background:#fff}
-.chart{margin-top:52px;display:flex;flex-direction:column;align-items:center}
-.n{background:var(--navy);color:#fff;padding:13px 24px;border-radius:10px;font-weight:600;font-size:.92rem;text-align:center;min-width:170px;box-shadow:0 6px 16px rgba(12,30,54,.18)}
-.n.top{background:var(--gold);color:var(--navy);font-size:1rem}
-.n.mid{background:var(--navy-2)}
-.n.leaf{background:var(--ivory);color:var(--navy);border:1.5px solid var(--gold);box-shadow:none}
-.line{width:2px;height:28px;background:var(--gold)}
-.row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.two{display:flex;gap:70px;align-items:flex-start;justify-content:center;flex-wrap:wrap;margin-top:0}
-.branch{display:flex;flex-direction:column;align-items:center}
-
-/* ---------- EXPERIENCE ---------- */
-.experience{background:var(--stone)}
-.exp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-.exp-grid p{color:#46505f;margin-bottom:16px}
-.exp-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.exp-imgs img{width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)}
-.exp-imgs img:first-child{grid-column:1/3;height:270px}
-
-/* ---------- PROJECTS ---------- */
-.projects{background:#fff}
-.fr{position:absolute;opacity:0;pointer-events:none}
-.filters{display:flex;gap:10px;justify-content:center;margin:34px 0 40px;flex-wrap:wrap}
-.filters label{border:1.5px solid var(--navy);background:none;color:var(--navy);padding:9px 22px;border-radius:50px;font-weight:600;font-size:.85rem;cursor:pointer;transition:.25s}
-.filters label:hover,
-#f-all:checked ~ .filters label[for="f-all"],
-#f-res:checked ~ .filters label[for="f-res"],
-#f-com:checked ~ .filters label[for="f-com"],
-#f-site:checked ~ .filters label[for="f-site"]{background:var(--navy);color:#fff}
-#f-res:checked ~ .gallery .g:not([data-c="residential"]),
-#f-com:checked ~ .gallery .g:not([data-c="commercial"]),
-#f-site:checked ~ .gallery .g:not([data-c="site"]){display:none}
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:16px}
-.g{position:relative;overflow:hidden;border-radius:12px;cursor:pointer}
-.g.big{grid-column:span 2;grid-row:span 2}
-.g.wide{grid-column:span 2}
-.g img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.g:hover img{transform:scale(1.08)}
-.g span{position:absolute;inset:auto 0 0 0;padding:44px 20px 16px;color:#fff;font-weight:600;font-size:.95rem;background:linear-gradient(transparent,rgba(12,30,54,.88));transform:translateY(100%);transition:.35s}
-.g:hover span{transform:none}
-
-/* ---------- COMPLIANCE ---------- */
-.compliance{background:var(--navy);color:#fff}
-.compliance h2.title{color:#fff}
-.compliance .lead{color:#c7d0de}
-.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
-.comp{background:var(--navy-2);border:1px solid rgba(198,161,91,.35);border-radius:var(--radius);padding:34px;text-align:center}
-.comp strong{display:block;font-family:var(--serif);font-size:2.6rem;color:var(--gold);line-height:1.1;margin-bottom:6px}
-.comp h4{font-size:1rem;margin-bottom:6px}
-.comp p{font-size:.88rem;color:#c7d0de}
-
-/* ---------- CLIENTS ---------- */
-.clients{background:linear-gradient(rgba(248,245,239,.9),rgba(248,245,239,.9)),url("images/clients-bg.jpg") center/cover fixed}
-.cl-group{margin-top:44px}
-.cl-group h3{font-size:.85rem;letter-spacing:.2em;color:var(--gold-dark);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:16px}
-.cl-group h3::after{content:"";flex:1;height:1px;background:#d8cfbb}
-.logos{display:flex;flex-wrap:wrap;gap:18px}
-.logos div{background:#fff;border-radius:12px;padding:18px 26px;display:grid;place-items:center;min-width:170px;height:106px;box-shadow:0 6px 18px rgba(12,30,54,.06);transition:.3s}
-.logos div:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.logos img{max-height:70px;max-width:150px;width:auto;object-fit:contain}
-
-/* ---------- CONTACT ---------- */
-.contact{background:linear-gradient(rgba(12,30,54,.82),rgba(12,30,54,.86)),url("images/contact.jpg") center/cover;color:#fff}
-.contact h2.title{color:#fff}
-.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
-.contact .lead{color:#c7d0de}
-.info{margin-top:34px;display:grid;gap:22px}
-.info li{display:flex;gap:18px;align-items:center}
-.info .ic{width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-size:1.2rem;flex:none}
-.info small{display:block;color:#aab6c8;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
-.info a:hover{color:var(--gold)}
-form{background:#fff;color:var(--ink);padding:40px;border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.35);display:grid;gap:16px}
-form h3{font-family:var(--serif);font-size:1.6rem;color:var(--navy);margin-bottom:4px}
-.f2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-input,select,textarea{width:100%;padding:14px 16px;border:1.5px solid #dcd6c8;border-radius:10px;font:inherit;background:var(--ivory);transition:.2s}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold);background:#fff}
-textarea{min-height:120px;resize:vertical}
-form .btn{width:100%;border:0;font-family:var(--sans)}
-
-/* ---------- FOOTER ---------- */
-footer{background:#07111f;color:#9aa6b8;padding:34px 0;text-align:center;font-size:.88rem}
-footer strong{color:var(--gold)}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:1000px){
-  .split,.split.rev,.exp-grid,.contact-grid,.vs-grid{grid-template-columns:1fr;gap:50px}
-  .cards,.roles,.comp-grid{grid-template-columns:1fr 1fr}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .team-pics{grid-template-columns:1fr 1fr}
-  .quick{grid-template-columns:1fr 1fr;bottom:-110px}
-  .about{padding-top:230px}
-  .photo-stack .badge{right:12px}
-}
-@media(max-width:760px){
-  section{padding:70px 0}
-  .burger{display:block}
-  .menu{position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;gap:0;display:none;padding:10px 0}
-  .navtoggle:checked ~ .menu{display:flex}
-  .menu a{padding:14px 6%;width:100%}
-  .menu .cta{border-radius:0;background:none;color:var(--gold)}
-  .cards,.roles,.comp-grid,.tick,.f2{grid-template-columns:1fr}
-  .quick{grid-template-columns:1fr 1fr}
-  .quick div{padding:18px 10px}
-  .quick strong{font-size:1.5rem}
-  .gallery{grid-template-columns:1fr;grid-auto-rows:240px}
-  .g.big,.g.wide{grid-column:auto;grid-row:auto}
-  .photo-stack .main,.personnel .pic{height:340px}
-  .g span{transform:none}
-  form{padding:26px}
-}
-</style>
+<link rel="icon" type="image/png" href="images/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="no-js">
 
@@ -284,7 +49,7 @@ footer strong{color:var(--gold)}
     <p data-i18n="hero_p">BAPTA Engineering is a Building and Civil Engineering contractor based in Arusha, now growing into property development. Our spirit: "Retaining Customers for Life."</p>
     <div class="btns">
       <a href="#projects" class="btn btn-gold" data-i18n="hero_b1">View Our Projects</a>
-      <a href="#" class="btn btn-wa wa-link" target="_blank" rel="noopener">
+      <a href="https://wa.me/255757755174" class="btn btn-wa wa-link" target="_blank" rel="noopener">
         <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 0 0 16 29c7.2 0 13-5.8 13-13S23.200 3 16 3zm0 23.700c-2 0-3.900-.6-5.500-1.600l-.4-.2-4 1 1.100-3.900-.3-.4A10.600 10.600 0 1 1 16 26.700zm5.800-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.200 1.200-1.200 2.800s1.200 3.300 1.400 3.500c.2.200 2.400 3.700 5.800 5.100.8.400 1.500.600 2 .8.8.3 1.600.2 2.200.1.700-.1 1.900-.8 2.200-1.500.3-.8.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
         <span data-i18n="btn_wa">Chat on WhatsApp</span>
       </a>
@@ -313,7 +78,7 @@ footer strong{color:var(--gold)}
     <div class="reveal right">
       <span class="eyebrow" data-i18n="about_eye">About Company</span>
       <h2 class="title" data-i18n="about_title">Credible performance, rising stage by stage.</h2>
-      <p data-i18n="about_p1">BAPTA engineering was originally founded in Arusha in 2025 as a Building and Civil Engineering Contractors and was registered by the national Contractor Registration Board (CRB) in Class Five.</p>
+      <p data-i18n="about_p1">BAPTA Engineering was originally founded in Arusha in 2025 as Building and Civil Engineering Contractors and was registered by the national Contractor Registration Board (CRB) in Class Five.</p>
       <p data-i18n="about_p2">Since then, it has been involved mainly in building maintenance, rehabilitations, new construction and occasionally road repairs and supply of building materials and as a result of its credible performance it has been rising stage by stage until now is in Class Four for Buildings and Class V for Civil Works. BAPTA is now also venturing into property development business.</p>
       <ul class="tick">
         <li data-i18n="t1">Building maintenance</li>
@@ -355,7 +120,7 @@ footer strong{color:var(--gold)}
         <div class="imgwrap"><img src="images/vision-roller.jpg" alt="Road roller on site" /></div>
         <div class="txt">
           <h3 data-i18n="vi_h1">Our Vision</h3>
-          <p data-i18n="vi_p1">Everything that we are and everything that we do shall be encompassed within the spirit of 'Retaining Customers for Life. No single thing that we do is so urgent or important that we cannot take a moment to consider Customer satisfaction, Health &amp; Safety and the Environment</p>
+          <p data-i18n="vi_p1">Everything that we are and everything that we do shall be encompassed within the spirit of 'Retaining Customers for Life'. No single thing that we do is so urgent or important that we cannot take a moment to consider Customer satisfaction, Health &amp; Safety and the Environment.</p>
         </div>
       </article>
       <article class="vs reveal right">
@@ -408,8 +173,8 @@ footer strong{color:var(--gold)}
       <span class="eyebrow" data-i18n="p_eye">Personnel</span>
       <h2 class="title" data-i18n="p_title">Experienced people, strong project management</h2>
       <p data-i18n="p_p1">BAPTA’s services are provided by a highly experienced and educated, in-house staff of licensed professionals, project managers, and technicians supplemented by a consortium of highly qualified professional consultants from within and outside of the country.</p>
-      <p data-i18n="p_p2">Consortium consultants include Architects Engineers, Quantity Surveyors, Human Resource, Specialists, and a Matrix of Technicians with professional qualifications, experience, and reputation, combined with their versatility and ability to provide service in a timely manner.</p>
-      <p data-i18n="p_p3">This unique blending of resources through the application of strong project management skills is strength for the company’s success.</p>
+      <p data-i18n="p_p2">Consortium consultants include Architects, Engineers, Quantity Surveyors, Human Resource, Specialists, and a Matrix of Technicians with professional qualifications, experience, and reputation, combined with their versatility and ability to provide service in a timely manner.</p>
+      <p data-i18n="p_p3">This unique blending of resources through the application of strong project management skills is a strength behind the company’s success.</p>
     </div>
     <img class="pic reveal right" src="images/personnel.jpg" alt="Modern meeting area" />
   </div>
@@ -484,8 +249,8 @@ footer strong{color:var(--gold)}
     <div class="reveal left">
       <span class="eyebrow" data-i18n="e_eye">Company Experience</span>
       <h2 class="title" data-i18n="e_title">An unparalleled reputation for a wide range of services</h2>
-      <p data-i18n="e_p1">As a major national construction and building contractors, Bapta Engineering has built an unparalleled reputation for a wide range of services. From contract maintenance work to new construction projects, road works, bridges, office renovations to commercial renovations; Bapta Engineering has been doing these works for the past seven years now through many construction companies that have been gaining experience and eventually obtaining the company registration, with that experience we create an environment that perfectly matches our client’s vision.</p>
-      <p data-i18n="e_p2">We offer a complete construction package to our clients. All sites are managed by projects from start to finish and a designated site manager oversees the work of our technicians. Our comprehensive approach ensures that every project from bathroom installations to complete renovations and structural extensions is completed on time and on budget and to the highest standards.</p>
+      <p data-i18n="e_p1">As a major national construction and building contractors, BAPTA Engineering has built an unparalleled reputation for a wide range of services. From contract maintenance work to new construction projects, road works, bridges, office renovations to commercial renovations; BAPTA Engineering has been doing these works for the past seven years now through many construction companies that have been gaining experience and eventually obtaining the company registration, with that experience we create an environment that perfectly matches our client’s vision.</p>
+      <p data-i18n="e_p2">We offer a complete construction package to our clients. All sites are managed as projects from start to finish and a designated site manager oversees the work of our technicians. Our comprehensive approach ensures that every project from bathroom installations to complete renovations and structural extensions is completed on time and on budget and to the highest standards.</p>
       <p data-i18n="e_p3">As serious builders, we believe that a tidy workplace is as important as the final finish and we strive to keep our workplace tidy and safe.</p>
     </div>
     <div class="exp-imgs reveal right">
@@ -547,7 +312,7 @@ footer strong{color:var(--gold)}
     </div>
 
     <div class="quick-actions reveal" style="justify-content:center;margin-top:44px">
-      <a href="#" class="btn btn-wa wa-link" target="_blank" rel="noopener" data-wa="visit">
+      <a href="https://wa.me/255757755174" class="btn btn-wa wa-link" target="_blank" rel="noopener" data-wa="visit">
         <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 0 0 16 29c7.2 0 13-5.8 13-13S23.200 3 16 3zm0 23.700c-2 0-3.900-.6-5.500-1.600l-.4-.2-4 1 1.100-3.900-.3-.4A10.600 10.600 0 1 1 16 26.700zm5.800-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.200 1.200-1.200 2.800s1.200 3.300 1.400 3.500c.2.200 2.400 3.700 5.800 5.100.8.400 1.500.600 2 .8.8.3 1.600.2 2.200.1.700-.1 1.900-.8 2.200-1.500.3-.8.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
         <span data-i18n="sp_cta">Book a site visit on WhatsApp</span>
       </a>
@@ -611,7 +376,7 @@ footer strong{color:var(--gold)}
       <p class="lead" data-i18n="ct_lead">Tell us what you have in mind and we will get back to you.</p>
 
       <div class="quick-actions">
-        <a href="#" class="btn btn-wa wa-link" target="_blank" rel="noopener">
+        <a href="https://wa.me/255757755174" class="btn btn-wa wa-link" target="_blank" rel="noopener">
           <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 0 0 16 29c7.2 0 13-5.8 13-13S23.200 3 16 3zm0 23.700c-2 0-3.900-.6-5.500-1.600l-.4-.2-4 1 1.100-3.900-.3-.4A10.600 10.600 0 1 1 16 26.700zm5.800-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.200 1.200-1.200 2.800s1.200 3.300 1.400 3.500c.2.200 2.400 3.700 5.800 5.100.8.400 1.500.600 2 .8.8.3 1.600.2 2.200.1.700-.1 1.900-.8 2.200-1.500.3-.8.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
           <span data-i18n="btn_wa">Chat on WhatsApp</span>
         </a>
@@ -623,8 +388,8 @@ footer strong{color:var(--gold)}
 
       <ul class="info">
         <li><span class="ic">📞</span><div><small data-i18n="ph">Phone</small><a href="tel:+255757755174">+255 757 755 174</a></div></li>
-        <li><span class="ic">✉️</span><div><small data-i18n="em">Email</small><a href="mailto:emmanuel@baptaengineering.com">emmanuel@baptaengineering.com</a></div></li>
-        <li><span class="ic">📍</span><div><small data-i18n="ad">Address</small><span data-i18n="ad_v">Kisongo, Arusha</span></div></li>
+        <li><span class="ic">✉️</span><div><small data-i18n="em">Email</small><a href="mailto:baptaengineering25@gmail.com">baptaengineering25@gmail.com</a></div></li>
+        <li><span class="ic">📍</span><div><small data-i18n="ad">Address</small><span data-i18n="ad_v">Plot No. 6 &amp; 7, Kisongo, Arusha (near the market)</span></div></li>
       </ul>
     </div>
 
@@ -662,7 +427,7 @@ footer strong{color:var(--gold)}
   <a href="tel:+255757755174" class="call" aria-label="Call BAPTA Engineering">
     <svg viewBox="0 0 24 24"><path d="M6.600 10.800a15 15 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.25c1.100.4 2.300.6 3.600.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.6 3.600a1 1 0 0 1-.25 1z"/></svg>
   </a>
-  <a href="#" class="wa wa-link" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/255757755174" class="wa wa-link" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8A13 13 0 0 0 16 29c7.2 0 13-5.8 13-13S23.200 3 16 3zm0 23.700c-2 0-3.900-.6-5.500-1.600l-.4-.2-4 1 1.100-3.900-.3-.4A10.600 10.600 0 1 1 16 26.700zm5.800-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.200 1.200-1.200 2.800s1.200 3.300 1.400 3.500c.2.200 2.400 3.700 5.800 5.100.8.400 1.500.600 2 .8.8.3 1.600.2 2.200.1.700-.1 1.900-.8 2.200-1.500.3-.8.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
   </a>
 </div>
@@ -671,7 +436,7 @@ footer strong{color:var(--gold)}
 <div class="lightbox" id="lb" aria-hidden="true">
   <button class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
   <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
-  <img id="lbImg" src="" alt="" />
+  <img id="lbImg" alt="" />
   <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
   <p id="lbCap"></p>
 </div>
