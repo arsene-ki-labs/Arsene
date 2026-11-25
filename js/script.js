@@ -42,7 +42,7 @@
     o_eye:'Muundo wa Shirika',o_title:'Jinsi BAPTA inavyoundwa',o_board:'Bodi ya Wakurugenzi',o_ceo:'Rais na Mtendaji Mkuu',o_hr:'Rasilimali Watu',o_acc:'Hesabu',o_md:'Mkurugenzi Mkuu',
     o_ops:'Uendeshaji',o_proc:'Manunuzi',o_con:'Ujenzi',o_civil:'Kazi za Kiraia',o_spec:'Huduma na Kazi Maalum',o_bld:'Kazi za Majengo',o_pd:'Uendelezaji Mali',o_dd:'Usanifu na Uendelezaji',o_ms:'Masoko na Mauzo',
     e_eye:'Uzoefu wa Kampuni',e_title:'Sifa isiyo na kifani kwa huduma mbalimbali',
-    e_p1:'Kama wakandarasi wakubwa wa ujenzi wa kitaifa, Bapta Engineering imejijengea sifa isiyo na kifani kwa huduma mbalimbali. Kuanzia matengenezo ya mkataba hadi miradi mipya ya ujenzi, barabara, madaraja, ukarabati wa ofisi hadi majengo ya biashara; Bapta Engineering imekuwa ikifanya kazi hizi kwa miaka saba iliyopita kupitia kampuni nyingi za ujenzi zilizokuwa zikipata uzoefu hadi kupata usajili wa kampuni. Kwa uzoefu huo tunaunda mazingira yanayolingana kikamilifu na maono ya mteja wetu.',
+    e_p1:'Kama wakandarasi wakubwa wa ujenzi wa kitaifa, BAPTA Engineering imejijengea sifa isiyo na kifani kwa huduma mbalimbali. Kuanzia matengenezo ya mkataba hadi miradi mipya ya ujenzi, barabara, madaraja, ukarabati wa ofisi hadi majengo ya biashara; BAPTA Engineering imekuwa ikifanya kazi hizi kwa miaka saba iliyopita kupitia kampuni nyingi za ujenzi zilizokuwa zikipata uzoefu hadi kupata usajili wa kampuni. Kwa uzoefu huo tunaunda mazingira yanayolingana kikamilifu na maono ya mteja wetu.',
     e_p2:'Tunatoa huduma kamili ya ujenzi kwa wateja wetu. Site zote husimamiwa kimradi kuanzia mwanzo hadi mwisho na msimamizi maalum wa site husimamia kazi ya mafundi wetu. Mtazamo wetu wa kina unahakikisha kila mradi, kuanzia ufungaji wa bafu hadi ukarabati kamili na upanuzi wa miundo, unakamilika kwa wakati, ndani ya bajeti na kwa viwango vya juu kabisa.',
     e_p3:'Kama wajenzi makini, tunaamini mahali pa kazi pasafi ni muhimu kama umaliziaji wa mwisho, na tunajitahidi kuweka mahali petu pa kazi pasafi na salama.',
     pr_eye:'Miradi Yetu',pr_title:'Kazi tunazojivunia',pr_lead:'Mtazamo wa kazi za makazi, biashara na kiraia zilizokamilika na zinazoendelea.',
@@ -78,6 +78,8 @@
 
   var lang = 'en';
   try{ lang = localStorage.getItem('bapta_lang') || 'en'; }catch(e){}
+
+  if(!WA_MSG[lang]) lang = 'en';
 
   var nodes = document.querySelectorAll('[data-i18n]');
   var phs = document.querySelectorAll('[data-i18n-ph]');
@@ -134,29 +136,34 @@
   });
 
   /* ---------- Scroll reveal ---------- */
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-    });
-  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
 
-  /* ---------- Counter ---------- */
-  var cio = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting) return;
-      var el = en.target, end = +el.dataset.count, t0 = null;
-      function step(t){
-        if(!t0) t0 = t;
-        var p = Math.min((t-t0)/1600,1);
-        el.textContent = Math.round(end*(1-Math.pow(1-p,3)));
-        if(p<1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-      cio.unobserve(el);
-    });
-  },{threshold:.6});
-  document.querySelectorAll('.count').forEach(function(el){ cio.observe(el); });
+    /* ---------- Counter ---------- */
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var el = en.target, end = +el.dataset.count, t0 = null;
+        function step(t){
+          if(!t0) t0 = t;
+          var p = Math.min((t-t0)/1600,1);
+          el.textContent = Math.round(end*(1-Math.pow(1-p,3)));
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        cio.unobserve(el);
+      });
+    },{threshold:.6});
+    document.querySelectorAll('.count').forEach(function(el){ cio.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
 
   /* ---------- Nav shrink + back to top ---------- */
   var nav = document.getElementById('nav'), topBtn = document.getElementById('toTop');
@@ -186,7 +193,14 @@
     document.body.style.overflow='hidden';
   }
   function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-  figs.forEach(function(f,i){ f.addEventListener('click', function(){ openLb(i); }); });
+  figs.forEach(function(f,i){
+    f.tabIndex = 0;
+    f.setAttribute('role','button');
+    f.addEventListener('click', function(){ openLb(i); });
+    f.addEventListener('keydown', function(e){
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openLb(i); }
+    });
+  });
   document.getElementById('lbClose').addEventListener('click', closeLb);
   document.getElementById('lbPrev').addEventListener('click', function(){ openLb(idx-1); });
   document.getElementById('lbNext').addEventListener('click', function(){ openLb(idx+1); });
