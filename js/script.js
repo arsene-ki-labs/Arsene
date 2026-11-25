@@ -135,42 +135,21 @@
     window.open(url,'_blank','noopener');
   });
 
-  /* ---------- Scroll reveal ---------- */
-  var reveals = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-    reveals.forEach(function(el){ io.observe(el); });
-
-    /* ---------- Counter ---------- */
-    var cio = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting) return;
-        var el = en.target, end = +el.dataset.count, t0 = null;
-        function step(t){
-          if(!t0) t0 = t;
-          var p = Math.min((t-t0)/1600,1);
-          el.textContent = Math.round(end*(1-Math.pow(1-p,3)));
-          if(p<1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-        cio.unobserve(el);
-      });
-    },{threshold:.6});
-    document.querySelectorAll('.count').forEach(function(el){ cio.observe(el); });
-  } else {
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  }
-
   /* ---------- Nav shrink + back to top ---------- */
   var nav = document.getElementById('nav'), topBtn = document.getElementById('toTop');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#menu a[href^="#"]'));
+  var navSections = navLinks.map(function(link){ return document.querySelector(link.getAttribute('href')); }).filter(Boolean);
   function onScroll(){
     var y = window.scrollY;
     nav.classList.toggle('small', y>60);
     topBtn.classList.toggle('show', y>600);
+    var currentSection = null;
+    navSections.forEach(function(section){
+      if(section.getBoundingClientRect().top <= nav.offsetHeight + 80) currentSection = section;
+    });
+    navLinks.forEach(function(link){
+      link.classList.toggle('current', currentSection && link.getAttribute('href')==='#'+currentSection.id);
+    });
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
   topBtn.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
